@@ -1,77 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spacekat | Tune Into the Feeling</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: #f9f8ff;
-      color: #2e2e2e;
-    }
-    header {
-      background: linear-gradient(135deg, #c1a3f7, #a5ffcb);
-      padding: 4rem 2rem;
-      text-align: center;
-      color: white;
-    }
-    header h1 {
+    h2, h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
     }
-    header p {
-      font-size: 1.2rem;
-      font-style: italic;
-    }
-    section {
-      padding: 3rem 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: #6c3aad;
-    }
-    a {
-      color: #6c3aad;
-      text-decoration: none;
-    }
-    .media-links ul,
-    .shows ul,
-    .gallery {
-      padding-left: 1.2rem;
-    }
-    .media-links li,
-    .shows li {
-      margin-bottom: 0.5rem;
-    }
-    iframe {
-      max-width: 100%;
-      margin-top: 1rem;
-    }
-    .gallery img {
+    .gallery-container img {
       width: 100%;
       max-width: 300px;
       margin: 1rem;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-    .gallery-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .newsletter {
-      text-align: center;
-    }
     .newsletter input[type="email"] {
       padding: 0.5rem;
-      margin-top: 1rem;
       border-radius: 8px;
       border: 1px solid #ccc;
     }
@@ -81,81 +29,130 @@
       padding: 0.5rem 1rem;
       border: none;
       border-radius: 8px;
-      margin-left: 0.5rem;
       cursor: pointer;
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>Spacekat</h1>
-    <p>Tune Into the Feeling</p>
-  </header>
+<body class="is-preload">
 
-  <section>
-    <h2>Artist Bio</h2>
-    <p>Spacekat is a soulful reggae-fusion artist from Jamaica. Channeling healing frequencies and heartfelt lyrics, she creates music that uplifts, empowers, and connects. Rooted in authenticity and guided by The Most High, her sound blends roots reggae, soul, and spiritual storytelling — offering listeners a space to feel, heal, and come home to themselves.</p>
-    <p>Spacekat is a dynamic singer and performer whose music blends the rich essence of reggae with soulful Afro alternative fusion. With a voice that resonates deep emotion and a style that is both ethereal and grounded, she crafts a sonic experience that transports listeners to a dreamlike space while keeping them rooted and grounded.</p>
-    <p>Influenced by the timeless grooves of reggae, the depth of soul, and the experimental edge of fusion, Spacekat's artistry is a journey through sound, feeling, and self-expression. Her performances captivate audiences, drawing them into a world where melodies heal, rhythms inspire, and lyrics ignite transformation.</p>
-    <p>Whether she’s offering catharsis for heartbreak, affirmation for the weary, or sonic space for spiritual awakening, Spacekat weaves messages of divine connection, emotional honesty, and cosmic love into every song.</p>
+<!-- Wrapper -->
+<div id="wrapper">
+
+  <!-- Intro -->
+  <section class="intro">
+    <header>
+      <h1>Spacekat</h1>
+      <p>Tune Into the Feeling</p>
+    </header>
+    <div class="content">
+      <p>Spacekat is a soulful reggae-fusion artist from Jamaica whose sound blends roots reggae, soul, and spiritual storytelling. She channels healing frequencies and divine messages through music that uplifts and empowers.</p>
+      <ul class="actions">
+        <li><a href="#bio" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+      </ul>
+    </div>
   </section>
 
-  <section>
-    <h2>Ethos & Mission</h2>
-    <p>Spacekat’s artistry is grounded in emotional honesty, soul connection, and divine purpose. She sings not just to be heard, but to heal, to mirror, and to transform. Her work dismantles illusions of lack, isolation, and unworthiness — and replaces them with truth: that we are all connected, all divine, and all capable of wholeness.</p>
-    <p>Her songs come from a place of exploration, vulnerability, and trust. She is guided by ancestral wisdom, nature’s cycles, and the knowing that love is the root of all things. With music as her medium, Spacekat invites listeners to remember who they are, reclaim their inner power, and believe in something bigger.</p>
+  <!-- Section: Bio -->
+  <section id="bio" class="spotlight style1 orient-left content-align-left image-position-center">
+    <div class="content">
+      <h2>Artist Bio</h2>
+      <p>Spacekat is a dynamic singer and performer whose music blends the rich essence of reggae with soulful Afro alternative fusion. With a voice that resonates deep emotion and a style that is both ethereal and grounded, she crafts a sonic experience that transports listeners to a dreamlike space while keeping them rooted and grounded.</p>
+      <p>Whether she’s offering catharsis for heartbreak, affirmation for the weary, or sonic space for spiritual awakening, Spacekat weaves messages of divine connection, emotional honesty, and cosmic love into every song.</p>
+    </div>
+    <div class="image">
+      <img src="images/pic01.jpg" alt="Spacekat" />
+    </div>
+  </section>
+
+  <!-- Section: Ethos & Mission -->
+  <section class="spotlight style2 orient-right content-align-left image-position-center">
+    <div class="content">
+      <h2>Ethos & Mission</h2>
+      <p>Spacekat’s artistry is grounded in emotional honesty, soul connection, and divine purpose. Guided by ancestral wisdom and love, her music reminds us of our wholeness and invites us to remember who we are.</p>
+    </div>
+    <div class="image">
+      <img src="images/pic02.jpg" alt="Cosmic Imagery" />
+    </div>
   </section>
 
   <section class="media-links">
-    <h2>Music + Media</h2>
-    <ul>
-      <li><a href="https://youtu.be/Fxu9fr3XsGI?si=zmHZLELKxr1HUEVJ" target="_blank">YouTube</a></li>
-      <li><a href="https://audiomack.com/spacekat/album/love-by-association" target="_blank">Audiomack - Love by Association</a></li>
-      <li><a href="https://open.spotify.com/artist/3053MczUHHT8NFAKjWqxMG" target="_blank">Spotify - Spacekat</a></li>
-      <li><a href="https://music.apple.com/us/artist/spacekat/" target="_blank">Apple Music - Spacekat</a></li>
-    </ul>
-    <h3>Featured Songs</h3>
-    <ul>
-      <li><a href="https://music.apple.com/us/album/summer-love-feat-spacekat/" target="_blank">Summer Love (feat. Spacekat)</a></li>
-      <li><a href="https://www.youtube.com/watch?v=hr0j2saJ7ao" target="_blank">ZihKing - ReTune ft. King Shaladon, SpaceKat</a></li>
-    </ul>
-    <h3>Projects</h3>
-    <ul>
-      <li><a href="https://music.apple.com/us/album/love-by-association-ep/" target="_blank">Love By Association - EP</a></li>
-    </ul>
-    <h3>Performances</h3>
-    <ul>
-      <li><a href="https://www.youtube.com/watch?v=Fxu9fr3XsGI" target="_blank">Jamaican Family Feud | Di Group Chat – S2E1 (First 5 Minutes)</a></li>
-    </ul>
-  </section>
+  <h2>Music + Media</h2>
 
-  <section>
-    <h2>Watch on YouTube</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Fxu9fr3XsGI" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-  </section>
+  <!-- Spotify Embed: Feeling Fine -->
+  <iframe style="border-radius:12px; margin-bottom: 1.5rem;" 
+    src="https://open.spotify.com/embed/track/2v7l6IA4Fwa1fD2Egk7NGH?utm_source=generator" 
+    width="100%" 
+    height="152" 
+    frameborder="0" 
+    allowfullscreen 
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+    loading="lazy">
+  </iframe>
 
-  <section class="shows">
-    <h2>Upcoming Shows</h2>
-    <ul>
-    </ul>
-  </section>
+  <ul>
+    <li><a href="https://youtu.be/Fxu9fr3XsGI?si=zmHZLELKxr1HUEVJ" target="_blank">YouTube</a></li>
+    <li><a href="https://audiomack.com/spacekat/album/love-by-association" target="_blank">Audiomack - Love by Association</a></li>
+    <li><a href="https://open.spotify.com/artist/3053MczUHHT8NFAKjWqxMG" target="_blank">Spotify - Spacekat</a></li>
+    <li><a href="https://music.apple.com/us/artist/spacekat/" target="_blank">Apple Music - Spacekat</a></li>
+  </ul>
 
-  <section class="newsletter">
-    <h2>Join the Mailing List</h2>
-    <p>Stay updated on new music, live shows, and cosmic offerings.</p>
-    <input type="email" placeholder="Enter your email" />
-    <button>Subscribe</button>
-  </section>
+  <h3>Featured Songs</h3>
+  <ul>
+    <li><a href="https://music.apple.com/us/album/summer-love-feat-spacekat/" target="_blank">Summer Love (feat. Spacekat)</a></li>
+    <li><a href="https://www.youtube.com/watch?v=hr0j2saJ7ao" target="_blank">ZihKing - ReTune ft. King Shaladon, SpaceKat</a></li>
+  </ul>
 
-  <section class="gallery">
-    <h2>Visual Gallery</h2>
-    <div class="gallery-container">
-      <img src="https://via.placeholder.com/300x200.png?text=Performance+1" alt="Performance Photo 1" />
-      <img src="https://via.placeholder.com/300x200.png?text=Behind+the+Scenes" alt="Behind the Scenes" />
-      <img src="https://via.placeholder.com/300x200.png?text=Studio+Session" alt="Studio Session" />
-      <img src="/mnt/data/IMG-20250317-WA0001.jpg" alt="Spacekat Artistic Portrait" />
+  <h3>Projects</h3>
+  <ul>
+    <li><a href="https://music.apple.com/us/album/love-by-association-ep/" target="_blank">Love By Association - EP</a></li>
+  </ul>
+
+  <h3>Performances</h3>
+  <ul>
+    <li><a href="https://www.youtube.com/watch?v=Fxu9fr3XsGI" target="_blank">Jamaican Family Feud | Di Group Chat – S2E1 (First 5 Minutes)</a></li>
+  </ul>
+</section>
+
+  <!-- Section: Gallery -->
+  <section class="wrapper style1 align-center">
+    <div class="inner">
+      <h2>Visual Gallery</h2>
+      <div class="gallery-container">
+        <img src="https://via.placeholder.com/300x200.png?text=Performance+1" alt="Performance 1" />
+        <img src="https://via.placeholder.com/300x200.png?text=Behind+the+Scenes" alt="Behind the Scenes" />
+        <img src="https://via.placeholder.com/300x200.png?text=Studio+Session" alt="Studio Session" />
+        <img src="images/pic04.jpg" alt="Spacekat Artistic Portrait" />
+      </div>
     </div>
   </section>
+
+  <!-- Section: Mailing List -->
+  <section class="wrapper style2 align-center newsletter">
+    <div class="inner">
+      <h2>Join the Mailing List</h2>
+      <p>Stay updated on new music, live shows, and cosmic offerings.</p>
+      <input type="email" placeholder="Enter your email" />
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="wrapper style1 align-center">
+    <div class="inner">
+      <p>&copy; Spacekat. All rights reserved.</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>
