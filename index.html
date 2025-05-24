@@ -203,40 +203,42 @@
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/main.js"></script>
-
+	
 <!-- YouTube Video Player Script -->
 <script>
-// Load YouTube API
-const ytScript = document.createElement('script');
-ytScript.src = "https://www.youtube.com/iframe_api";
-document.body.appendChild(ytScript);
+  // Load YouTube API
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  const firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// Video Player Controller
-document.addEventListener('DOMContentLoaded', function() {
-  function initVideoPlayer() {
-    const container = document.querySelector('.video-autoplay-container');
+  // Store references until API is ready
+  let playersToInit = [];
+
+  function onYouTubeIframeAPIReady() {
+    console.log('YouTube API ready');
+    const videoContainers = document.querySelectorAll('.video-autoplay-container');
+    videoContainers.forEach(container => {
+      initVideoPlayer(container);
+    });
+  }
+
+  function initVideoPlayer(container) {
+    const iframe = container.querySelector('iframe');
     const muteBtn = container.querySelector('.mute-toggle');
-    
-    // Create YouTube player
-    const player = new YT.Player('spacekat-video', {
+    const spinner = container.querySelector('.spinner');
+
+    const player = new YT.Player(iframe, {
       events: {
         'onReady': (e) => setupVideoObserver(e.target, container),
-        'onStateChange': (e) => handlePlayerState(e.data, container)
+        'onStateChange': (e) => handlePlayerState(e.data, spinner)
       }
     });
 
     // Mute toggle handler
     muteBtn.addEventListener('click', () => {
       const isMuted = player.isMuted();
-      if (isMuted) {
-        player.unMute();
-        muteBtn.innerHTML = '<i class="icon fa-volume-up"></i>';
-        localStorage.removeItem('spacekatVideoMuted');
-      } else {
-        player.mute();
-        muteBtn.innerHTML = '<i class="icon fa-volume-mute"></i>';
-        localStorage.setItem('spacekatVideoMuted', 'true');
-      }
+      toggleMuteState(player, muteBtn, isMuted);
     });
   }
 
@@ -246,11 +248,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (entry.isIntersecting) {
           container.classList.add('loading');
           player.playVideo();
-          
-          // Restore user's mute preference
+
           if (!localStorage.getItem('spacekatVideoMuted')) {
             player.unMute();
-            container.querySelector('.mute-toggle').innerHTML = '<i class="icon fa-volume-up"></i>';
+            updateMuteButton(container, true);
           }
         } else {
           player.pauseVideo();
@@ -265,8 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(container);
   }
 
-  function handlePlayerState(state, container) {
-    const spinner = container.querySelector('.spinner');
+  function handlePlayerState(state, spinner) {
     if (state === YT.PlayerState.PLAYING) {
       spinner.style.opacity = '0';
     } else if (state === YT.PlayerState.BUFFERING) {
@@ -274,13 +274,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Global YouTube API ready function
-  window.onYouTubeIframeAPIReady = function() {
-    initVideoPlayer();
-  };
-});
-</script>
+  function toggleMuteState(player, muteBtn, isMuted) {
+    if (isMuted) {
+      player.unMute();
+      localStorage.removeItem('spacekatVideoMuted');
+    } else {
+      player.mute();
+      localStorage.setItem('spacekatVideoMuted', 'true');
+    }
+    updateMuteButton(muteBtn, isMuted);
+  }
 
-</body>
-</html>
-</html>
+  function updateMuteButton(container, isMuted) {
+    const icon = container.querySelector('.mute-toggle i');
+    icon.className = isMuted ? 'icon fa-volume-up' : 'icon fa-volume-mute';
+  }
+</script>
