@@ -63,7 +63,7 @@
     
     .video-wrapper {
       position: relative;
-      padding-bottom: 56.25%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
     }
     
     .video-wrapper iframe {
@@ -96,7 +96,7 @@
     }
     
     .mute-toggle:hover {
-      background: rgba(108,58,173,0.9);
+      background: rgba(0,75,150,0.9); /* Cobalt blue hover */
     }
     
     .spinner {
@@ -104,7 +104,7 @@
       height: 40px;
       border: 3px solid rgba(255,255,255,0.3);
       border-radius: 50%;
-      border-top-color: #6c3aad;
+      border-top-color: #004b96; /* Cobalt blue */
       animation: spin 1s ease-in-out infinite;
       opacity: 0;
     }
@@ -163,11 +163,11 @@
         <div class="video-autoplay-container">
           <div class="video-wrapper">
             <iframe 
-              src="https://www.youtube.com/embed/Fxu9fr3XsGI?enablejsapi=1&rel=0&mute=1" 
+              src="https://www.youtube.com/embed/Fxu9fr3XsGI?enablejsapi=1&rel=0&mute=1&autoplay=1" 
               frameborder="0" 
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen
-              id="spacekat-video">
+              class="youtube-video">
             </iframe>
             <div class="video-controls">
               <button class="mute-toggle" aria-label="Toggle mute">
@@ -192,9 +192,74 @@
       </div>
     </section>
 
-    <!-- Rest of your existing sections... -->
-    <!-- (Ethos Section, Gallery, Newsletter, etc.) -->
+    <!-- Panel (Spotlight) - Ethos Section -->
+    <section class="panel spotlight large left">
+      <div class="content span-5">
+        <h2 class="major">Ethos & Mission</h2>
+        <p>Spacekat's artistry is grounded in emotional honesty, soul connection, and divine purpose. Guided by ancestral wisdom and love, her music reminds us of our wholeness and invites us to remember who we are.</p>
+      </div>
+      <div class="image filtered tinted" data-position="top right">
+        <img src="images/pic03.jpg" alt="Performance" />
+      </div>
+    </section>
 
+    <!-- Panel - Gallery -->
+    <section class="panel">
+      <div class="intro color2">
+        <h2 class="major">Visual Gallery</h2>
+        <p>Moments from performances and creative sessions</p>
+      </div>
+      <div class="gallery">
+        <div class="group span-3">
+          <a href="images/gallery/fulls/01.jpg" class="image filtered span-3" data-position="bottom">
+            <img src="images/gallery/thumbs/01.jpg" alt="" />
+          </a>
+          <a href="images/gallery/fulls/02.jpg" class="image filtered span-1-5" data-position="center">
+            <img src="images/gallery/thumbs/02.jpg" alt="" />
+          </a>
+          <a href="images/gallery/fulls/03.jpg" class="image filtered span-1-5" data-position="bottom">
+            <img src="images/gallery/thumbs/03.jpg" alt="" />
+          </a>
+        </div>
+        <a href="images/gallery/fulls/04.jpg" class="image filtered span-2-5" data-position="top">
+          <img src="images/gallery/thumbs/04.jpg" alt="" />
+        </a>
+      </div>
+    </section>
+
+    <!-- Panel - Newsletter -->
+    <section class="panel color4-alt">
+      <div class="intro color4">
+        <h2 class="major">Join the Mailing List</h2>
+        <p>Stay updated on new music, live shows, and cosmic offerings.</p>
+      </div>
+      <div class="inner columns divided">
+        <div class="span-3-25">
+          <form method="post" action="#">
+            <div class="fields">
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="your@email.com" />
+              </div>
+            </div>
+            <ul class="actions">
+              <li><input type="submit" value="Subscribe" class="button primary" /></li>
+            </ul>
+          </form>
+        </div>
+        <div class="span-1-5">
+          <ul class="contact-icons color1">
+            <li class="icon brands fa-instagram"><a href="#">@spacekatofficial</a></li>
+            <li class="icon brands fa-tiktok"><a href="#">@spacekatmusic</a></li>
+            <li class="icon brands fa-spotify"><a href="#">Spotify</a></li>
+            <li class="icon solid fa-envelope"><a href="#">contact@spacekat.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Copyright -->
+    <div class="copyright">&copy; Spacekat. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
   </div>
 </div>
 
@@ -203,90 +268,65 @@
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/main.js"></script>
-	
+
 <!-- YouTube Video Player Script -->
 <script>
-  // Load YouTube API
-  const tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  const firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+// Load YouTube API
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
 
-  // Store references until API is ready
-  let playersToInit = [];
+// Video Player Controller
+let player;
 
-  function onYouTubeIframeAPIReady() {
-    console.log('YouTube API ready');
-    const videoContainers = document.querySelectorAll('.video-autoplay-container');
-    videoContainers.forEach(container => {
-      initVideoPlayer(container);
-    });
-  }
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player(document.querySelector('.youtube-video'), {
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
 
-  function initVideoPlayer(container) {
-    const iframe = container.querySelector('iframe');
-    const muteBtn = container.querySelector('.mute-toggle');
-    const spinner = container.querySelector('.spinner');
-
-    const player = new YT.Player(iframe, {
-      events: {
-        'onReady': (e) => setupVideoObserver(e.target, container),
-        'onStateChange': (e) => handlePlayerState(e.data, spinner)
+function onPlayerReady(event) {
+  // Set up intersection observer for autoplay
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        event.target.playVideo();
+      } else {
+        event.target.pauseVideo();
       }
     });
+  }, {
+    threshold: 0.7 // Play when 70% visible
+  });
+  
+  observer.observe(document.querySelector('.video-autoplay-container'));
+}
 
-    // Mute toggle handler
-    muteBtn.addEventListener('click', () => {
-      const isMuted = player.isMuted();
-      toggleMuteState(player, muteBtn, isMuted);
-    });
+function onPlayerStateChange(event) {
+  const container = document.querySelector('.video-autoplay-container');
+  const spinner = container.querySelector('.spinner');
+  
+  if (event.data === YT.PlayerState.BUFFERING) {
+    container.classList.add('loading');
+  } else {
+    container.classList.remove('loading');
   }
+}
 
-  function setupVideoObserver(player, container) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          container.classList.add('loading');
-          player.playVideo();
-
-          if (!localStorage.getItem('spacekatVideoMuted')) {
-            player.unMute();
-            updateMuteButton(container, true);
-          }
-        } else {
-          player.pauseVideo();
-          container.classList.remove('loading');
-        }
-      });
-    }, {
-      threshold: 0.6,
-      rootMargin: '0px 0px -100px 0px'
-    });
-
-    observer.observe(container);
+// Mute toggle functionality
+document.querySelector('.mute-toggle').addEventListener('click', function() {
+  if (player.isMuted()) {
+    player.unMute();
+    this.innerHTML = '<i class="icon fa-volume-up"></i>';
+  } else {
+    player.mute();
+    this.innerHTML = '<i class="icon fa-volume-mute"></i>';
   }
-
-  function handlePlayerState(state, spinner) {
-    if (state === YT.PlayerState.PLAYING) {
-      spinner.style.opacity = '0';
-    } else if (state === YT.PlayerState.BUFFERING) {
-      spinner.style.opacity = '1';
-    }
-  }
-
-  function toggleMuteState(player, muteBtn, isMuted) {
-    if (isMuted) {
-      player.unMute();
-      localStorage.removeItem('spacekatVideoMuted');
-    } else {
-      player.mute();
-      localStorage.setItem('spacekatVideoMuted', 'true');
-    }
-    updateMuteButton(muteBtn, isMuted);
-  }
-
-  function updateMuteButton(container, isMuted) {
-    const icon = container.querySelector('.mute-toggle i');
-    icon.className = isMuted ? 'icon fa-volume-up' : 'icon fa-volume-mute';
-  }
+});
 </script>
+
+</body>
+</html>
